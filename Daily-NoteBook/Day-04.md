@@ -1,5 +1,4 @@
 # Day 4 — Linux Basics: File Creation, Permissions, and Dash-Named Files
-
 **Date:** [26th september 2026]
 **Focus:** Learning how to create empty files, control file permissions with `chmod`, and read files whose names start with a dash (`-`)
 
