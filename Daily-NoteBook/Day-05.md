@@ -14,12 +14,15 @@
 - Learned `chmod` and tested myself with a 7-question quiz
 - Read file owner and group from the 3rd and 4th columns of `ls -l`
 - Checked my identity with `whoami` and `id`
+- Listed folder contents with permissions using `ls -la` and `ls -ls`
+- Listed all user home folders with `ls /home`
 - Created a practice user with `sudo adduser`
 - Changed the owner and group of a test file with `sudo chown`
 - Set permissions to `600` and tested who could still read the file
 - Hit three errors (`invalid user`, `Operation not permitted`, `missing operand`) and fixed each one
 - Studied how to act as another user with `sudo -u` and `su -`
 - Studied how to delete a user completely and verify that nothing is left
+- Checked a user's groups with `groups username` and deleted a user's home folder with `sudo rm -r`
 
 ## Key Concepts Learned
 - **Owner, group, others:** every file has one owner, one group, and everyone else is "others". `chmod` decides *what* each of them can do, and `chown` decides *who* the owner and group are.
@@ -35,6 +38,10 @@
 - **Linux is case-sensitive:** `juned`, `Juned`, and `junedjaved` are three different names. `chown` needs the exact **login name**, not the full name.
 - **`adduser` details:** only the username and password matter. Full name, room number, and phone are optional (press Enter to skip), and no real personal details should go in practice users.
 - **Deleting a user:** `deluser` removes only the account, `--remove-home` also removes the home folder, and `--remove-all-files` also removes every file the user owns on the system.
+- **Viewing folders with `ls`:** `ls -la folder` shows permissions of everything inside the folder, including hidden files (names starting with `.`). `ls -ls folder` also shows a long listing with permissions, but skips hidden files and adds the file size in blocks as the first column.
+- **User home folders:** every normal user has a home folder inside `/home`, so `ls /home` lists all the users who have one.
+- **Checking users and groups:** `groups username` shows which groups a user belongs to, and `getent group name` confirms whether a group exists.
+- **Manual home folder removal:** `sudo rm -r /home/username` deletes a user's home folder and everything inside it. It cannot be undone, so I must double-check the path before running it.
 - **Traces remain:** shell history and system logs may still show that a user was created. Logs are evidence and must never be edited.
 
 ## Commands Summary
@@ -47,8 +54,12 @@
 | `chmod a=r file` | Set everyone to read only |
 | `ls -l file` | Show permissions, owner, and group |
 | `ls -ld folder` | Show permissions of the folder itself |
+| `ls -la folder` | Show permissions of all files inside the folder, including hidden files |
+| `ls -ls folder` | Show permissions of the files inside the folder, with file sizes in blocks |
+| `ls /home` | List the home folders of all users |
 | `whoami` | Show current user |
 | `id` / `id username` | Show UID, GID, and groups (also checks if a user exists) |
+| `groups username` | Show which groups a user belongs to |
 | `sudo adduser name` | Create a new user |
 | `sudo chown user file` | Change the owner |
 | `sudo chown user:group file` | Change owner and group together |
@@ -59,7 +70,8 @@
 | `sudo deluser name` | Delete the account, keep the home folder |
 | `sudo deluser --remove-home name` | Delete the account and home folder |
 | `sudo deluser --remove-all-files name` | Delete the account and all files owned by the user |
-| `getent passwd name` / `getent group name` | Check that the user or group is really gone |
+| `sudo rm -r /home/username` | Manually delete a user's home folder (double-check the path first) |
+| `getent passwd name` / `getent group name` | Check that the user or group is really gone (or exists) |
 | `sudo delgroup name` | Remove a leftover group |
 
 ## Challenges & Fixes
@@ -70,6 +82,7 @@
 - **Could not read a `600` file after giving it away:** I was in the group class, and the group digit was `0`. Fix: understand the owner → group → others check, or use a mode like `640`.
 - **Another user cannot reach my file:** they need `x` on every folder on the way, including my home folder. Fix: `chmod o+x ~` temporarily, then `chmod o-x ~` to restore it.
 - **Deleting a user leaves orphan files:** files show a bare number as owner. Fix: `chown` them back to myself first, before deleting the user.
+- **Home folder left behind after `deluser`:** the account is gone but `/home/username` still exists. Fix: use `--remove-home` next time, or delete it manually with `sudo rm -r /home/username` after confirming the exact path with `ls /home`.
 - **Personal details in `adduser`:** the optional fields can hold personal data. Fix: press Enter to skip them, and redact any such details before pasting terminal output into a public repo.
 
 ## Next Steps
