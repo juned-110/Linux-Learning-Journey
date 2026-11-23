@@ -1,6 +1,6 @@
 # Processes, System Info, Permissions, Ownership, and User Management
 
-**Name:** Juned Javed
+**Name:** Juned Javed 
 **Focus:** Understanding how Linux manages processes, reading system information and logs, understanding SSH, and learning how Linux decides who can read, write, and run a file (`chmod`, `chown`), including how to add, switch to, and completely remove a user
 
 ---
