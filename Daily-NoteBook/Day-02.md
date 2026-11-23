@@ -1,6 +1,6 @@
 # Navigation Commands and Special Filenames
 
-**Name:** Juned Javed
+**Name:** Juned Javed 
 **Focus:** Learning navigation commands and understanding how the shell and `cat` handle special filenames
 
 ---
