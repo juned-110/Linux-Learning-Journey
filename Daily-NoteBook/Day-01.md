@@ -1,7 +1,6 @@
-# Day 01 — Linux Learning Journey
+# Linux Learning Journey
 
 **Name:** Juned Javed
-**Date:** September 21, 2026
 **Focus:** Establishing a working Linux environment and public documentation infrastructure
 
 ---
@@ -14,7 +13,7 @@
 
 ---
 
-## ✅ What I Accomplished Today
+## ✅ What I Accomplished
 
 - Installed and set up Kali Linux through a Virtual Machine as my working Linux environment
 - Set up my username and password
@@ -77,5 +76,3 @@
 - Learn core terminal navigation commands (`pwd`, `ls`, `cd`, `cat`, `file`, `find`)
 - Learn `touch` and `rm`
 - Practice navigating the Linux filesystem
-- Begin OverTheWire Bandit (Levels 0–2)
-- Set up the `bandit-solutions/` documentation structure
